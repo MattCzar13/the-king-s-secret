@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh4djwbk5nl5d"]
+
+[ext_resource type="PackedScene" uid="uid://b3x0usay4dmog" path="res://scenes/debug_panel.tscn" id="1_j5px3"]
+[ext_resource type="Script" uid="uid://duxelmudiyuo6" path="res://scenes/root.gd" id="1_twpsu"]
+
+[node name="Root" type="Node"]
+script = ExtResource("1_twpsu")
+
+[node name="Debug Panel" parent="." instance=ExtResource("1_j5px3")]
+visible = false
