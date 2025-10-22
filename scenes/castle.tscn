@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://biwwlsdfm47i3"]
+
+[ext_resource type="Script" uid="uid://47pw8a6hf7rl" path="res://scenes/castle.gd" id="1_0ysgy"]
+[ext_resource type="Texture2D" uid="uid://btdcfi2ki51hw" path="res://icon.svg" id="1_bly62"]
+
+[node name="Castle" type="Node2D"]
+script = ExtResource("1_0ysgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.4117647, 1, 1, 1)
+texture = ExtResource("1_bly62")

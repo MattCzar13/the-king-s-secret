@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb3rmx40e11yl"]
+
+[ext_resource type="Script" uid="uid://0ckqtfclytib" path="res://scenes/levels/level_1.gd" id="1_ksju7"]
+[ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="2_6iamk"]
+[ext_resource type="PackedScene" uid="uid://b0dh6ts2d8qxb" path="res://scenes/messenger.tscn" id="3_6761a"]
+[ext_resource type="PackedScene" uid="uid://n88y1vrsh0ri" path="res://scenes/tower.tscn" id="3_nsrm0"]
+[ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="4_x42e6"]
+
+[sub_resource type="Curve2D" id="Curve2D_6iamk"]
+
+[node name="Level 1" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemy_spawn_points", "path")]
+script = ExtResource("1_ksju7")
+starting_castle = NodePath("Castle A")
+ending_castle = NodePath("Castle B")
+enemy_spawn_points = [NodePath("Enemy spawn points/Marker2D")]
+path = NodePath("Messenger Path")
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Enemy spawn points" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Enemy spawn points"]
+position = Vector2(626, 45)
+
+[node name="Castle A" parent="." instance=ExtResource("2_6iamk")]
+position = Vector2(215, 515)
+
+[node name="Castle B" parent="." instance=ExtResource("2_6iamk")]
+position = Vector2(1031, 499)
+
+[node name="Messenger Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6iamk")
+
+[node name="Messenger" parent="Messenger Path" instance=ExtResource("3_6761a")]
+
+[node name="Tower" parent="." instance=ExtResource("3_nsrm0")]
+position = Vector2(490, 403)
+
+[node name="Tower2" parent="." instance=ExtResource("3_nsrm0")]
+position = Vector2(756, 546)
+
+[node name="Enemy" parent="." instance=ExtResource("4_x42e6")]
+position = Vector2(574, 77)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_x42e6")]
+position = Vector2(684, 62)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_x42e6")]
+position = Vector2(637, 118)
