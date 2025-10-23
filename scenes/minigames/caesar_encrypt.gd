@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func _on_key_slider_value_changed(key: float) -> void:
 	key_label.text = "KEY: %s (shifting plaintext by %d)" % [Globals.alpha[key], key]
-	ciphertext_label.text = Globals.shift_plaintext(plaintext, key, true)
+	ciphertext_label.text = Globals.shift_message(plaintext, key, true)
 	
