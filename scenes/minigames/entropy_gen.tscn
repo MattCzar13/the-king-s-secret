@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://c217wopro1811"]
+
+[ext_resource type="Script" uid="uid://d2wf3dgk45l10" path="res://scenes/minigames/entropy_gen.gd" id="1_g40lp"]
+[ext_resource type="Script" uid="uid://k7jvyomjal5u" path="res://scenes/minigames/cheese.gd" id="2_o8a1p"]
+[ext_resource type="Texture2D" uid="uid://cgrg1coeuonn6" path="res://assets/cheese.png" id="2_ycdsq"]
+[ext_resource type="Script" uid="uid://dkh2w6q3qe256" path="res://scenes/minigames/thread.gd" id="3_opwhl"]
+[ext_resource type="Script" uid="uid://bjcimlv2ixlqv" path="res://scenes/minigames/mouse.gd" id="3_p3l3u"]
+[ext_resource type="Texture2D" uid="uid://bijowoqflth30" path="res://assets/mouse.png" id="3_ycdsq"]
+[ext_resource type="Texture2D" uid="uid://d2jx0lckryr7h" path="res://assets/potion.png" id="4_cvchx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g40lp"]
+
+[node name="EntropyGenerator" type="Node2D"]
+script = ExtResource("1_g40lp")
+
+[node name="cheese" type="Sprite2D" parent="."]
+position = Vector2(205.00006, 223.00005)
+scale = Vector2(0.13554801, 0.13554801)
+texture = ExtResource("2_ycdsq")
+script = ExtResource("2_o8a1p")
+
+[node name="Threads of Fate" type="Label" parent="."]
+offset_left = 476.0
+offset_top = 23.0
+offset_right = 681.0
+offset_bottom = 46.0
+scale = Vector2(2.762785, 2.762785)
+text = "Threads of Fate"
+
+[node name="EntropyLabel" type="Label" parent="."]
+offset_left = 1020.0
+offset_top = 565.0
+offset_right = 1060.0
+offset_bottom = 588.0
+
+[node name="Analysis" type="Button" parent="."]
+offset_left = 995.0
+offset_top = 497.0
+offset_right = 1200.0
+offset_bottom = 528.0
+scale = Vector2(1.325571, 1.325571)
+text = "Perform Analysis"
+
+[node name="Potion" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1111, 301)
+scale = Vector2(0.20631072, 0.25445294)
+texture = ExtResource("4_cvchx")
+
+[node name="mouse" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(105.99997, 223)
+scale = Vector2(3.3445766, 3.3445766)
+script = ExtResource("3_p3l3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse"]
+shape = SubResource("CircleShape2D_g40lp")
+
+[node name="Sprite2D" type="Sprite2D" parent="mouse"]
+position = Vector2(7.406616, 5.258362)
+rotation = 4.712389
+scale = Vector2(0.050997514, 0.050997514)
+texture = ExtResource("3_ycdsq")
+
+[node name="thread" type="Line2D" parent="."]
+default_color = Color(0.6205571, 0, 0.13227993, 1)
+script = ExtResource("3_opwhl")
+
+[node name="polling" type="Timer" parent="thread"]
+wait_time = 0.05
+
+[connection signal="button_up" from="Analysis" to="." method="_on_analysis_button_up"]
+[connection signal="mouse_moving" from="mouse" to="thread" method="_on_mouse_mouse_moving"]
+[connection signal="mouse_stopped" from="mouse" to="thread" method="_on_mouse_mouse_stopped"]
+[connection signal="timeout" from="thread/polling" to="." method="_on_timer_timeout"]

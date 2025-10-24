@@ -43,6 +43,9 @@ var alpha: Array[String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K
 var message: String = "ALL HAIL THE KING"
 var vigenere_key: String = "HANGING"
 
+var entropy: int = 0
+var private_colour: Color
+
 func shift_message(text: String, key: int, encrypt: bool) -> String:
 	var shifted = ""
 
