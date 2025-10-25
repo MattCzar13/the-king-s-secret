@@ -23,7 +23,7 @@ signal update_path
 
 signal message_delivered
 
-signal minigame_start_type_a
+signal minigame_caesar_decrypt
 signal minigame_start_type_b
 signal minigame_start_type_c
 signal minigame_success

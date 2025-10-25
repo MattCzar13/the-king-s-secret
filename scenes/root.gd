@@ -10,6 +10,9 @@ extends Node
 
 func _ready() -> void:
 	Globals.example_signal.connect(print.bind("Example signal received!"))
+	Globals.minigame_caesar_decrypt.connect(_on_minigame_caesar_decrypt)
+	Globals.minigame_success.connect(_on_minigame_success)
+	Globals.minigame_fail.connect(_on_minigame_fail)
 	
 	# when a message is delivered, check if the delivery amount has hit the goal
 	Globals.message_delivered.connect(win_condition_message_check)
@@ -24,3 +27,23 @@ func win_condition_message_check():
 	# and if so, the level has been completed
 	if Globals.level_information["messages_delivered"] >= Globals.level_information["message_delivery_goal"]:
 		Globals.level_completed.emit()
+
+func _on_minigame_caesar_decrypt():
+	var minigame_parent = $Minigames
+	if(minigame_parent.get_child_count() > 0):
+		printerr("Minigame already running!")
+	else:
+		var scene = preload("res://scenes/minigames/caesar_decrypt.tscn").instantiate()
+		minigame_parent.add_child(scene)
+
+func _on_minigame_success():
+	var minigame_parent = $Minigames
+	for child in minigame_parent.get_children():
+		child.queue_free()
+	print("You succeeded the minigame!")
+
+func _on_minigame_fail():
+	var minigame_parent = $Minigames
+	for child in minigame_parent.get_children():
+		child.queue_free()
+	print("You failed the minigame!")
