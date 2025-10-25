@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb3rmx40e11yl"]
+[gd_scene load_steps=6 format=3 uid="uid://bb3rmx40e11yl"]
 
 [ext_resource type="Script" uid="uid://0ckqtfclytib" path="res://scenes/levels/level_1.gd" id="1_ksju7"]
 [ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="2_6iamk"]
-[ext_resource type="PackedScene" uid="uid://b0dh6ts2d8qxb" path="res://scenes/messenger.tscn" id="3_6761a"]
 [ext_resource type="PackedScene" uid="uid://n88y1vrsh0ri" path="res://scenes/tower.tscn" id="3_nsrm0"]
 [ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="4_x42e6"]
 
@@ -18,6 +17,9 @@ path = NodePath("Messenger Path")
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
+[node name="MessengerSpawnTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="Enemy spawn points" type="Node" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Enemy spawn points"]
@@ -31,8 +33,6 @@ position = Vector2(1031, 499)
 
 [node name="Messenger Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6iamk")
-
-[node name="Messenger" parent="Messenger Path" instance=ExtResource("3_6761a")]
 
 [node name="Tower" parent="." instance=ExtResource("3_nsrm0")]
 position = Vector2(490, 403)
@@ -48,3 +48,5 @@ position = Vector2(684, 62)
 
 [node name="Enemy3" parent="." instance=ExtResource("4_x42e6")]
 position = Vector2(637, 118)
+
+[connection signal="timeout" from="MessengerSpawnTimer" to="." method="_on_messenger_spawn_timer_timeout"]
