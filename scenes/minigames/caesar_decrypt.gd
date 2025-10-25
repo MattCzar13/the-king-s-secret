@@ -4,7 +4,7 @@ extends Control
 @onready var plaintext_label = $"VBoxContainer/CaesarCipher/plaintext"
 @onready var ciphertext_label = $"VBoxContainer/CaesarCipher/ciphertext"
 
-var secret_key = randi_range(0, 25)
+var secret_key: int
 var ciphertext: String = Globals.shift_message(Globals.message, secret_key, true)
 
 func _ready() -> void:
@@ -24,6 +24,11 @@ func _on_submit_button_pressed() -> void:
 	else:
 		attempt_fire_signal("minigame_fail")
 
+func set_secret_key(key: int):
+	#sets the seccret key and updates the cypher text
+	secret_key = key
+	ciphertext = Globals.shift_message(Globals.message, secret_key, true)
+	
 # Helper function to fire the signal and handle an error
 func attempt_fire_signal(signal_name : String):
 	var result : Error = Globals.emit_signal(signal_name)

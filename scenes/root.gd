@@ -28,13 +28,15 @@ func win_condition_message_check():
 	if Globals.level_information["messages_delivered"] >= Globals.level_information["message_delivery_goal"]:
 		Globals.level_completed.emit()
 
-func _on_minigame_caesar_decrypt():
+func _on_minigame_caesar_decrypt(data):
+	print("Received:", data)
 	var minigame_parent = $Minigames
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
-		var scene = preload("res://scenes/minigames/caesar_decrypt.tscn").instantiate()
-		minigame_parent.add_child(scene)
+		var caesar_decrypt_minigame = preload("res://scenes/minigames/caesar_decrypt.tscn").instantiate()
+		caesar_decrypt_minigame.set_secret_key(data)
+		minigame_parent.add_child(caesar_decrypt_minigame)
 
 func _on_minigame_success():
 	var minigame_parent = $Minigames
