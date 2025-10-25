@@ -11,3 +11,5 @@ script = ExtResource("1_twpsu")
 visible = false
 
 [node name="Level 1" parent="." instance=ExtResource("3_lrqlo")]
+
+[node name="Minigames" type="Node" parent="."]

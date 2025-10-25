@@ -50,6 +50,14 @@ func _ready() -> void:
 
 # Helper function to fire the signal and handle an error
 func attempt_fire_signal(signal_name : String):
-	var result : Error = Globals.emit_signal(signal_name)
-	if result:
-		printerr("Either this signal isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
+	if (signal_name == "minigame_caesar_decrypt"):
+		#sets the secret key arg
+		#var secret_key = 7
+		var secret_key = randi_range(0, 25)
+		var result : Error = Globals.emit_signal(signal_name, secret_key)
+		if result:
+			printerr("Either this signal isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
+	else:
+		var result : Error = Globals.emit_signal(signal_name)
+		if result:
+			printerr("Either this signal isn't connected to anything, or it requires arguments (this menu doesn't support those)!")

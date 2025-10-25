@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfvua4lkimayw"]
+
+[ext_resource type="Script" uid="uid://216dcaquhsd0" path="res://scenes/menus.gd" id="1_dve7u"]
+
+[node name="Menus" type="Control" node_paths=PackedStringArray("build_options")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dve7u")
+build_options = [NodePath("BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("BuildMenu/HBoxContainer/GridContainer/Button3"), NodePath("BuildMenu/HBoxContainer/GridContainer/Button4")]
+
+[node name="BuildMenu" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 614.0
+offset_right = 564.0
+offset_bottom = 680.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildMenu"]
+layout_mode = 2
+
+[node name="Buildmenu" type="Label" parent="BuildMenu/HBoxContainer"]
+layout_mode = 2
+text = "Choose a type and LEFT CLICK to place a tower.
+RIGHT CLICK on a tower in the world to remove it."
+
+[node name="GridContainer" type="GridContainer" parent="BuildMenu/HBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="CaesarE" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Caesar (Encrypt)"
+
+[node name="CaesarD" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Caesar (Decrypt)"
+
+[node name="Button3" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "..."
+
+[node name="Button4" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "..."
+
+[node name="InfoMenu" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1026.0
+offset_top = 616.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="InfoMenu/VBoxContainer"]
+layout_mode = 2
+text = "Messages sent successfully:"
+
+[node name="Label2" type="Label" parent="InfoMenu/VBoxContainer"]
+layout_mode = 2
+text = "..."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BuildMenu/HBoxContainer/GridContainer/CaesarE" to="." method="_on_caesar_e_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
