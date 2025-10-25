@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0ckqtfclytib" path="res://scenes/levels/level_1.gd" id="1_ksju7"]
 [ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="2_6iamk"]
-[ext_resource type="PackedScene" uid="uid://n88y1vrsh0ri" path="res://scenes/tower.tscn" id="3_nsrm0"]
 [ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="4_x42e6"]
+[ext_resource type="PackedScene" uid="uid://dfvua4lkimayw" path="res://scenes/menus.tscn" id="5_6761a"]
 
 [sub_resource type="Curve2D" id="Curve2D_6iamk"]
 
@@ -34,12 +34,6 @@ position = Vector2(1031, 499)
 [node name="Messenger Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6iamk")
 
-[node name="Tower" parent="." instance=ExtResource("3_nsrm0")]
-position = Vector2(490, 403)
-
-[node name="Tower2" parent="." instance=ExtResource("3_nsrm0")]
-position = Vector2(756, 546)
-
 [node name="Enemy" parent="." instance=ExtResource("4_x42e6")]
 position = Vector2(574, 77)
 
@@ -48,5 +42,7 @@ position = Vector2(684, 62)
 
 [node name="Enemy3" parent="." instance=ExtResource("4_x42e6")]
 position = Vector2(637, 118)
+
+[node name="Menus" parent="." instance=ExtResource("5_6761a")]
 
 [connection signal="timeout" from="MessengerSpawnTimer" to="." method="_on_messenger_spawn_timer_timeout"]

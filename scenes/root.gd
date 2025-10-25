@@ -10,6 +10,7 @@ extends Node
 
 func _ready() -> void:
 	Globals.example_signal.connect(print.bind("Example signal received!"))
+	Globals.minigame_caesar_modify.connect(_on_minigame_caesar_modify)
 	Globals.minigame_caesar_decrypt.connect(_on_minigame_caesar_decrypt)
 	Globals.minigame_success.connect(_on_minigame_success)
 	Globals.minigame_fail.connect(_on_minigame_fail)
@@ -37,6 +38,16 @@ func _on_minigame_caesar_decrypt(data):
 		var caesar_decrypt_minigame = preload("res://scenes/minigames/caesar_decrypt.tscn").instantiate()
 		caesar_decrypt_minigame.set_secret_key(data)
 		minigame_parent.add_child(caesar_decrypt_minigame)
+
+func _on_minigame_caesar_modify(input : String, encrypt : bool):
+	var minigame_parent = $Minigames
+	if(minigame_parent.get_child_count() > 0):
+		printerr("Minigame already running!")
+	else:
+		var caesar_modify_minigame = preload("res://scenes/minigames/caesar_encrypt.tscn").instantiate()
+		caesar_modify_minigame.plaintext = input
+		caesar_modify_minigame.encrypt = encrypt
+		minigame_parent.add_child(caesar_modify_minigame)
 
 func _on_minigame_success():
 	var minigame_parent = $Minigames

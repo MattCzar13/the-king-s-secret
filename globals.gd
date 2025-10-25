@@ -23,11 +23,16 @@ signal update_path
 
 signal message_delivered
 
+signal minigame_caesar_modify(input : String, encrypt : bool)
 signal minigame_caesar_decrypt(key)
 signal minigame_start_type_b(key)
 signal minigame_start_type_c(key)
 signal minigame_success
 signal minigame_fail
+signal minigame_end_data(data : Dictionary)
+
+signal building_action_ready(type : String)
+signal building_action_done
 
 signal level_completed
 signal level_failed
