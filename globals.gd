@@ -24,7 +24,7 @@ signal update_path
 signal message_delivered
 
 signal minigame_caesar_decrypt(key)
-signal minigame_start_type_b(key)
+signal minigame_vigenere_decrypt(key)
 signal minigame_start_type_c(key)
 signal minigame_success
 signal minigame_fail
@@ -41,7 +41,6 @@ var level_information : Dictionary = {
 var alpha: Array[String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
 							"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var message: String = "ALL HAIL THE KING"
-var vigenere_key: String = "HANGING"
 
 var entropy: int = 0
 var private_colour: Color
@@ -62,6 +61,18 @@ func shift_message(text: String, key: int, encrypt: bool) -> String:
 	return shifted
 
 func vigenere(text: String, key: String, encrypt: bool) -> String:
+	#ignote non-alphabet chars
+	var filtered_key := ""
+	for i in range(key.length()):
+		var code := key.unicode_at(i)
+		if (code >= 65 and code <= 90) or (code >= 97 and code <= 122):
+			filtered_key += key[i]
+	
+	key = filtered_key
+	
+	if(key.length() < 1):
+		printerr("Vigenere key has invalid length")
+		return ""
 	var plaintext = ""
 	var key_index = 0
 

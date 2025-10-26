@@ -56,7 +56,14 @@ func attempt_fire_signal(signal_name : String):
 		var secret_key = randi_range(0, 25)
 		var result : Error = Globals.emit_signal(signal_name, secret_key)
 		if result:
-			printerr("Either this signal isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
+			printerr("Either minigame_caesar_decrypt isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
+	elif (signal_name == "minigame_vigenere_decrypt"):
+		#sets the secret key arg
+		var secret_key = "Hanging"
+		#var secret_key = randi_range(0, 25)
+		var result : Error = Globals.emit_signal(signal_name, secret_key)
+		if result:
+			printerr("Either minigame_vigenere_decrypt isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
 	else:
 		var result : Error = Globals.emit_signal(signal_name)
 		if result:
