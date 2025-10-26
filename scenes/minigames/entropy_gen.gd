@@ -27,3 +27,15 @@ func _on_analysis_button_up() -> void:
 func _on_timer_timeout() -> void:
 	thread.add_point(mouse.position)
 	draw_timer.start()
+
+func _on_finish_pressed() -> void:
+	if thread.points.size() < 50:
+		print("Not enough entropy!")
+	else:
+		attempt_fire_signal("minigame_success")
+
+# Helper function to fire the signal and handle an error
+func attempt_fire_signal(signal_name : String):
+	var result : Error = Globals.emit_signal(signal_name)
+	if result:
+		printerr("Either this signal isn't connected to anything, or it is missing arguments!")

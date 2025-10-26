@@ -25,7 +25,7 @@ signal message_delivered
 
 signal minigame_caesar_decrypt(key)
 signal minigame_vigenere_decrypt(key)
-signal minigame_start_type_c(key)
+signal minigame_threads_of_fate
 signal minigame_success
 signal minigame_fail
 
