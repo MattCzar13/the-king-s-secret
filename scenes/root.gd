@@ -10,8 +10,12 @@ extends Node
 
 func _ready() -> void:
 	Globals.example_signal.connect(print.bind("Example signal received!"))
+	
 	Globals.minigame_caesar_modify.connect(_on_minigame_caesar_modify)
 	Globals.minigame_caesar_decrypt.connect(_on_minigame_caesar_decrypt)
+	Globals.minigame_vigenere_decrypt.connect(_on_minigame_vignere_decrypt)
+	Globals.minigame_threads_of_fate.connect(_on_minigame_threads_of_fate)
+	
 	Globals.minigame_success.connect(_on_minigame_success)
 	Globals.minigame_fail.connect(_on_minigame_fail)
 	
@@ -38,6 +42,24 @@ func _on_minigame_caesar_decrypt(data):
 		var caesar_decrypt_minigame = preload("res://scenes/minigames/caesar_decrypt.tscn").instantiate()
 		caesar_decrypt_minigame.set_secret_key(data)
 		minigame_parent.add_child(caesar_decrypt_minigame)
+		
+func _on_minigame_vignere_decrypt(data):
+	print("Received:", data)
+	var minigame_parent = $Minigames
+	if(minigame_parent.get_child_count() > 0):
+		printerr("Minigame already running!")
+	else:
+		var vigenere_decrypt_minigame = preload("res://scenes/minigames/vigenere.tscn").instantiate()
+		vigenere_decrypt_minigame.set_secret_key(data)
+		minigame_parent.add_child(vigenere_decrypt_minigame)
+		
+func _on_minigame_threads_of_fate():
+	var minigame_parent = $Minigames
+	if(minigame_parent.get_child_count() > 0):
+		printerr("Minigame already running!")
+	else:
+		var tof_minigame = preload("res://scenes/minigames/entropy_gen.tscn").instantiate()
+		minigame_parent.add_child(tof_minigame)
 
 func _on_minigame_caesar_modify(input : String, encrypt : bool):
 	var minigame_parent = $Minigames

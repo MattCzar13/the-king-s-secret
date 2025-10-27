@@ -5,7 +5,7 @@ signal mouse_moving
 signal mouse_stopped
 
 func _physics_process(delta: float) -> void:
-	var target = get_parent().get_child(0).position
+	var target = get_parent().get_node("cheese").position
 	
 	if (position.distance_to(target) > 100):
 		var direction = global_position.direction_to(target)
