@@ -6,6 +6,11 @@ class_name Tower
 # Detects colliding messengers, reads their message, and changes it accordingly
 # The tower needs to be prepared through a minigame
 
+enum TowerState {
+	PREVIEW,
+	BUILT,
+}
+
 # Assign this tower a "type", which decides what code it runs when a message runs through it
 @export_enum("None", "Caesar Encrypt", "Caesar Decrypt") var type : String:
 	set(value):
@@ -18,6 +23,8 @@ class_name Tower
 
 # The last message that ran through this tower, updated with each passing message
 var input_message : String = ""
+
+var tower_state = TowerState.PREVIEW
 
 # Change messengers's message (if the tower has been setup correctly)
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -45,6 +52,25 @@ func read_and_write(m : Messenger):
 			# Do nothing to the message
 			pass
 
+func set_tower_state(desired_state: TowerState):
+	var sprite = $"Sprite"
+	var modify_button = $"ModifyButton"
+	var collision = $"Area2D/CollisionShape2D"
+	
+	if desired_state == TowerState.BUILT:
+		sprite.modulate = Color.WHITE
+		modify_button.disabled = false
+		modify_button.visible = true
+		collision.disabled = false
+	
+	if desired_state == TowerState.PREVIEW:
+		sprite.modulate = Color(Color.WHITE, 0.75)
+		modify_button.disabled = true
+		modify_button.visible = false
+		collision.disabled = true
+		
+	tower_state = desired_state
+	
 func modify():
 	# This is where the tower opens a minigame depending on what type it is
 	# The result of the minigame is saved inside this tower (caesar key, etc)

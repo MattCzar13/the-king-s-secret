@@ -8,12 +8,29 @@ radius = 32.0
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("typelabel") groups=["Tower"]]
 script = ExtResource("1_ay4al")
-typelabel = NodePath("TypeLabel")
+typelabel = NodePath("Sprite/TypeLabel")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="CanvasGroup" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
 modulate = Color(1, 1, 0.24705882, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2x682")
+
+[node name="TypeLabel" type="Label" parent="Sprite"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.5
+offset_top = -54.42
+offset_right = 51.5
+offset_bottom = -31.419998
+grow_horizontal = 2
+grow_vertical = 0
+text = "Does nothing"
+horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -28,22 +45,8 @@ offset_left = -31.0
 offset_right = 31.0
 offset_bottom = 31.0
 grow_horizontal = 2
+disabled = true
 text = "Modify"
-
-[node name="TypeLabel" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.5
-offset_top = -54.42
-offset_right = 45.5
-offset_bottom = -31.419998
-grow_horizontal = 2
-grow_vertical = 0
-text = "Does nothing"
-horizontal_alignment = 1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

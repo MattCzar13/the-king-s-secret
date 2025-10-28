@@ -15,7 +15,7 @@ class_name Level
 var obj_messenger : PackedScene = preload("res://scenes/messenger.tscn")
 var obj_tower : PackedScene = preload("res://scenes/tower.tscn")
 
-var build_on_click : Node
+var pending_build_on_click : Tower
 
 func _ready() -> void:
 	Globals.update_path.connect(update_path)
@@ -24,13 +24,16 @@ func _ready() -> void:
 	update_path()
 
 func _physics_process(delta: float) -> void:
+	if pending_build_on_click:
+		pending_build_on_click.position = get_viewport().get_mouse_position()
+		
 	if Input.is_action_just_pressed("Draw"):
-		if build_on_click:
-			build_on_click.position = get_viewport().get_mouse_position()
-			add_child(build_on_click)
-			build_on_click = null
+		if pending_build_on_click:
+			pending_build_on_click.set_tower_state(Tower.TowerState.BUILT)
+			pending_build_on_click = null
 			Globals.building_action_done.emit()
 			update_path()
+			
 
 func prepare_to_place_tower(type : String):
 	var obj : Tower = obj_tower.instantiate()
@@ -43,7 +46,9 @@ func prepare_to_place_tower(type : String):
 		_:
 			pass
 	
-	build_on_click = obj
+	obj.set_tower_state(Tower.TowerState.PREVIEW)
+	pending_build_on_click = obj
+	add_child(obj)
 
 # Updates the path node to link the castles
 func update_path():
