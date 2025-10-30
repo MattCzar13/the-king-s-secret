@@ -3,6 +3,7 @@ extends Node
 ## This is our root node, so this script is our "main".
 
 @export var gamecontainer : Node
+@export var minigamecontainer : Node
 
 @export var popup : PopupNode
 
@@ -51,7 +52,7 @@ func win_condition_message_check():
 
 func _on_minigame_caesar_decrypt(data):
 	print("Received:", data)
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
@@ -61,7 +62,7 @@ func _on_minigame_caesar_decrypt(data):
 		
 func _on_minigame_vignere_decrypt(data):
 	print("Received:", data)
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
@@ -70,7 +71,7 @@ func _on_minigame_vignere_decrypt(data):
 		minigame_parent.add_child(vigenere_decrypt_minigame)
 		
 func _on_minigame_threads_of_fate():
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
@@ -78,7 +79,7 @@ func _on_minigame_threads_of_fate():
 		minigame_parent.add_child(tof_minigame)
 
 func _on_minigame_caesar_modify(input : String, encrypt : bool):
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
@@ -88,13 +89,13 @@ func _on_minigame_caesar_modify(input : String, encrypt : bool):
 		minigame_parent.add_child(caesar_modify_minigame)
 
 func _on_minigame_success():
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	for child in minigame_parent.get_children():
 		child.queue_free()
 	print("You succeeded the minigame!")
 
 func _on_minigame_fail():
-	var minigame_parent = $Minigames
+	var minigame_parent = minigamecontainer
 	for child in minigame_parent.get_children():
 		child.queue_free()
 	print("You failed the minigame!")

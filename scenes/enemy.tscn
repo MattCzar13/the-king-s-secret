@@ -1,12 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8fcqyfic7k4b"]
+[gd_scene load_steps=4 format=3 uid="uid://c8fcqyfic7k4b"]
 
 [ext_resource type="Texture2D" uid="uid://btdcfi2ki51hw" path="res://icon.svg" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://fpenj1neqr1h" path="res://scenes/enemy.gd" id="1_md0e3"]
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 16.03122
+
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("timer", "cooldown_timer")]
 script = ExtResource("1_md0e3")
+timer = NodePath("Timer")
+cooldown_timer = NodePath("Cooldown")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(3.2944162, 0, 0, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_7p1mj")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_md0e3")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

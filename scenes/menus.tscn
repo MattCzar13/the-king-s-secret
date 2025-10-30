@@ -2,65 +2,80 @@
 
 [ext_resource type="Script" uid="uid://216dcaquhsd0" path="res://scenes/menus.gd" id="1_dve7u"]
 
-[node name="Menus" type="Control" node_paths=PackedStringArray("build_options")]
+[node name="Menus" type="Control" node_paths=PackedStringArray("build_options", "player_progress_bar", "enemy_progress_bar")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_dve7u")
-build_options = [NodePath("BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("BuildMenu/HBoxContainer/GridContainer/Button3"), NodePath("BuildMenu/HBoxContainer/GridContainer/Button4")]
+build_options = [NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/Button3"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/Button4")]
+player_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer/ProgressBar")
+enemy_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer2/ProgressBar")
 
-[node name="BuildMenu" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(0, 64)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 614.0
-offset_right = 564.0
-offset_bottom = 680.0
+offset_top = -40.0
+offset_right = 40.0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Buildmenu" type="Label" parent="BuildMenu/HBoxContainer"]
+[node name="Things" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/Things"]
+layout_mode = 2
+text = "Send the message!"
+
+[node name="BuildMenu" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BuildMenu"]
+layout_mode = 2
+
+[node name="Buildmenu" type="Label" parent="VBoxContainer/BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Choose a type and LEFT CLICK to place a tower.
 RIGHT CLICK on a tower in the world to remove it."
 
-[node name="GridContainer" type="GridContainer" parent="BuildMenu/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BuildMenu/HBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="CaesarE" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+[node name="CaesarE" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Caesar (Encrypt)"
 
-[node name="CaesarD" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+[node name="CaesarD" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Caesar (Decrypt)"
 
-[node name="Button3" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
 text = "..."
 
-[node name="Button4" type="Button" parent="BuildMenu/HBoxContainer/GridContainer"]
+[node name="Button4" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
 text = "..."
 
 [node name="InfoMenu" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(256, 64)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1026.0
-offset_top = 616.0
-offset_right = 1240.0
-offset_bottom = 680.0
+offset_left = -214.0
+offset_top = -64.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -68,14 +83,32 @@ grow_vertical = 0
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="InfoMenu/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoMenu/VBoxContainer"]
 layout_mode = 2
-text = "Messages sent successfully:"
+alignment = 2
 
-[node name="Label2" type="Label" parent="InfoMenu/VBoxContainer"]
+[node name="Label" type="Label" parent="InfoMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "..."
-horizontal_alignment = 1
+text = "Messages sent successfully"
 
-[connection signal="pressed" from="BuildMenu/HBoxContainer/GridContainer/CaesarE" to="." method="_on_caesar_e_pressed"]
-[connection signal="pressed" from="BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
+[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="InfoMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InfoMenu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Enemy knowledge"
+
+[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Things/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE" to="." method="_on_caesar_e_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]

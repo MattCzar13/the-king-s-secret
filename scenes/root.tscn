@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bb3rmx40e11yl" path="res://scenes/levels/level_1.tscn" id="3_lrqlo"]
 [ext_resource type="PackedScene" uid="uid://cvx33ymhi2a6f" path="res://scenes/popup.tscn" id="4_sqa0i"]
 
-[node name="Root" type="Node" node_paths=PackedStringArray("gamecontainer", "popup")]
+[node name="Root" type="Node" node_paths=PackedStringArray("gamecontainer", "minigamecontainer", "popup")]
 script = ExtResource("1_twpsu")
 gamecontainer = NodePath("Game Container")
+minigamecontainer = NodePath("Game Container/Minigames")
 popup = NodePath("Popup")
 
 [node name="Debug Panel" parent="." instance=ExtResource("1_j5px3")]
