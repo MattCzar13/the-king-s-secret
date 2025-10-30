@@ -16,6 +16,7 @@ extends Node
 # TODO: Pathfinding for enemies (navigation agent / region nodes + collision shapes)
 # TODO: Enemy actions (sabotaging messages, attacking messengers, etc etc)
 
+signal send_popup(title : String, content : String)
 
 signal example_signal
 

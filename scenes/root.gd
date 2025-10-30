@@ -2,11 +2,9 @@ extends Node
 
 ## This is our root node, so this script is our "main".
 
-## TODO: a lot of stuff
+@export var gamecontainer : Node
 
-# We should have a reference to our level node, so we can easily
-# pause and unpause the level during minigames (you can pause nodes directly)
-@export var level : Node
+@export var popup : PopupNode
 
 func _ready() -> void:
 	Globals.example_signal.connect(print.bind("Example signal received!"))
@@ -23,9 +21,27 @@ func _ready() -> void:
 	Globals.message_delivered.connect(win_condition_message_check)
 	
 	Globals.level_completed.connect(print.bind("you win!"))
+	
+	Globals.send_popup.connect(show_popup)
+	
+	popup.visible = false
 
 func _physics_process(delta: float) -> void:
 	pass
+
+func show_popup(title : String, content : String):
+	# Unhide the popup node, pause the game, await popup being closed, then unpause
+	# This could be used for many cases (pause screen, info dump, etc)
+	
+	popup.title.text = title
+	popup.content.text = content
+	popup.visible = true
+	gamecontainer.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	await popup.closed
+	
+	popup.visible = false
+	gamecontainer.process_mode = Node.PROCESS_MODE_INHERIT
 
 func win_condition_message_check():
 	# Checks if the amount of successful deliveries has hit the goal for the level

@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh4djwbk5nl5d"]
+[gd_scene load_steps=5 format=3 uid="uid://dh4djwbk5nl5d"]
 
 [ext_resource type="PackedScene" uid="uid://b3x0usay4dmog" path="res://scenes/debug_panel.tscn" id="1_j5px3"]
 [ext_resource type="Script" uid="uid://duxelmudiyuo6" path="res://scenes/root.gd" id="1_twpsu"]
 [ext_resource type="PackedScene" uid="uid://bb3rmx40e11yl" path="res://scenes/levels/level_1.tscn" id="3_lrqlo"]
+[ext_resource type="PackedScene" uid="uid://cvx33ymhi2a6f" path="res://scenes/popup.tscn" id="4_sqa0i"]
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" node_paths=PackedStringArray("gamecontainer", "popup")]
 script = ExtResource("1_twpsu")
+gamecontainer = NodePath("Game Container")
+popup = NodePath("Popup")
 
 [node name="Debug Panel" parent="." instance=ExtResource("1_j5px3")]
 visible = false
 
-[node name="Level 1" parent="." instance=ExtResource("3_lrqlo")]
+[node name="Game Container" type="Node" parent="."]
 
-[node name="Minigames" type="Node" parent="."]
+[node name="Level 1" parent="Game Container" instance=ExtResource("3_lrqlo")]
+
+[node name="Minigames" type="Node" parent="Game Container"]
+
+[node name="Popup" parent="." instance=ExtResource("4_sqa0i")]

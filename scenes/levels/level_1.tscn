@@ -1,17 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb3rmx40e11yl"]
+[gd_scene load_steps=7 format=3 uid="uid://bb3rmx40e11yl"]
 
 [ext_resource type="Script" uid="uid://0ckqtfclytib" path="res://scenes/levels/level_1.gd" id="1_ksju7"]
 [ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="2_6iamk"]
 [ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="4_x42e6"]
 [ext_resource type="PackedScene" uid="uid://dfvua4lkimayw" path="res://scenes/menus.tscn" id="5_6761a"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x42e6"]
+size = Vector2(215, 777.5)
+
 [sub_resource type="Curve2D" id="Curve2D_6iamk"]
 
-[node name="Level 1" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemy_spawn_points", "path")]
+[node name="Level 1" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "path")]
 script = ExtResource("1_ksju7")
+title = "Humble Beginnings"
+description = "You are tasked with overseeing the delivery of the King's message from the West Castle to the East Castle. Your messengers will automatically make the path to the East Castle, carrying the message and stopping along any towers you build along the way (left to right).
+
+Unfortunately, your enemies have been camping outside of your territory, and plan on stealing the message from your messengers any chance they get. This cannot happen; if the enemies were to learn of our secret message, our kingdom will surely fall.
+
+Your goal is to encrypt these messages, so the enemies cannot gain the information that these messages hold. You must also remember to decrypt these messages before they arrive at the East Castle, otherwise that castle will not be able to read the message themselves."
+hint = "If your messengers carry the unencrypted message through enemy territory, it will be stolen. You must encrypt the message before it reaches enemy territory, and then decrypt it afterwards. Remember to use the same key both before and after!"
 starting_castle = NodePath("Castle A")
 ending_castle = NodePath("Castle B")
-enemy_spawn_points = [NodePath("Enemy spawn points/Marker2D")]
 path = NodePath("Messenger Path")
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -20,10 +29,24 @@ anchor_mode = 0
 [node name="MessengerSpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Enemy spawn points" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Enemy spawn points"]
-position = Vector2(626, 45)
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_x42e6")]
+position = Vector2(574, 77)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_x42e6")]
+position = Vector2(684, 62)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("4_x42e6")]
+position = Vector2(637, 118)
+
+[node name="Enemy areas" type="Node" parent="."]
+
+[node name="Areas" type="Area2D" parent="Enemy areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy areas/Areas"]
+position = Vector2(632, 363)
+shape = SubResource("RectangleShape2D_x42e6")
 
 [node name="Castle A" parent="." instance=ExtResource("2_6iamk")]
 position = Vector2(215, 515)
@@ -33,15 +56,6 @@ position = Vector2(1031, 499)
 
 [node name="Messenger Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6iamk")
-
-[node name="Enemy" parent="." instance=ExtResource("4_x42e6")]
-position = Vector2(574, 77)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_x42e6")]
-position = Vector2(684, 62)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_x42e6")]
-position = Vector2(637, 118)
 
 [node name="Menus" parent="." instance=ExtResource("5_6761a")]
 

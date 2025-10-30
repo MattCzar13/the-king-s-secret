@@ -1,12 +1,23 @@
 extends Node
 class_name Level
 
+@export_category("Level Info")
+
+@export var title : String
+@export_multiline var description : String
+@export_multiline var hint : String
+
+@export_category("References")
+
 # A level always has two castles: one creates messages, the other receives them
 @export var starting_castle : Node2D
 @export var ending_castle : Node2D
 
-# A level always has at least one spawn point for enemies
-@export var enemy_spawn_points : Array[Node2D]
+# A level has enemies already placed inside it, preferrably in the enemy area(s)
+@export var enemies : Array[Enemy]
+
+# A level has areas where the enemy resides
+@export var enemy_areas : Area2D
 
 # A level needs a reference to the path between the two castles
 @export var path : Path2D
@@ -22,6 +33,10 @@ func _ready() -> void:
 	Globals.building_action_ready.connect(prepare_to_place_tower)
 	
 	update_path()
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	Globals.send_popup.emit(title, description)
 
 func _physics_process(delta: float) -> void:
 	if pending_build_on_click:

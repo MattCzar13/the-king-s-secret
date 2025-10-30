@@ -2,4 +2,5 @@ extends Node2D
 class_name Enemy
 
 # Enemy object
-# Eventually makes its way to the player's towers / messengers
+# Wanders inside the area it's placed in
+# When it detects a messenger, it steals their message
