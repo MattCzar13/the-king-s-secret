@@ -57,6 +57,13 @@ func attempt_fire_signal(signal_name : String):
 		var result : Error = Globals.emit_signal(signal_name, "ALL HAIL THE KING", true)
 		if result:
 			printerr("Either minigame_caesar_modify isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
+	if (signal_name == "minigame_vigenere_modify"):
+		#sets the secret key arg
+		#var secret_key = 7
+		var secret_key = "TEST"
+		var result : Error = Globals.emit_signal(signal_name, "ALL HAIL THE KING", true)
+		if result:
+			printerr("Either minigame_vigenere_modify isn't connected to anything, or it requires arguments (this menu doesn't support those)!")
 	elif (signal_name == "minigame_caesar_decrypt"):
 		#sets the secret key arg
 		#var secret_key = 7

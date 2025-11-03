@@ -98,6 +98,10 @@ func prepare_to_place_tower(type : String):
 			obj.type = "Caesar Encrypt"
 		"Caesar Decrypt":
 			obj.type = "Caesar Decrypt"
+		"Vigenere Encrypt":
+			obj.type = "Vigenere Encrypt"
+		"Vigenere Decrypt":
+			obj.type = "Vigenere Decrypt"
 		_:
 			pass
 	

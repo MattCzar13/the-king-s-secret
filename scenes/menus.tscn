@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_dve7u")
-build_options = [NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/Button3"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/Button4")]
+build_options = [NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereD")]
 player_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer/ProgressBar")
 enemy_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer2/ProgressBar")
 
@@ -58,13 +58,13 @@ text = "Caesar (Encrypt)"
 layout_mode = 2
 text = "Caesar (Decrypt)"
 
-[node name="Button3" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
+[node name="VigenereE" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "..."
+text = "Vigenere (Encrypt)"
 
-[node name="Button4" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
+[node name="VigenereD" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "..."
+text = "Vigenere (Decrypt)"
 
 [node name="InfoMenu" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(256, 64)
@@ -112,3 +112,5 @@ size_flags_horizontal = 8
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/Things/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE" to="." method="_on_caesar_e_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE" to="." method="_on_vigenere_e_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereD" to="." method="_on_vigenere_d_pressed"]

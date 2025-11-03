@@ -12,14 +12,15 @@ enum TowerState {
 }
 
 # Assign this tower a "type", which decides what code it runs when a message runs through it
-@export_enum("None", "Caesar Encrypt", "Caesar Decrypt") var type : String:
+@export_enum("None", "Caesar Encrypt", "Caesar Decrypt", "Vigenere Encrypt", "Vigenere Decrypt") var type : String:
 	set(value):
 		type = value
 		typelabel.text = type
 
 @export var typelabel : Label
 
-@export var caesar_key : int = 0
+@export var caesar_key := 0
+@export var vigenere_key := ""
 
 # The last message that ran through this tower, updated with each passing message
 var input_message : String = ""
@@ -48,6 +49,12 @@ func read_and_write(m : Messenger):
 		"Caesar Decrypt":
 			# Decrypt the passing message
 			m.message = Globals.shift_message(input_message, caesar_key, false)
+		"Vigenere Encrypt":
+			# Encrypt the passing message
+			m.message = Globals.vigenere(input_message, vigenere_key, true)
+		"Vigenere Decrypt":
+			# Decrypt the passing message
+			m.message = Globals.vigenere(input_message, vigenere_key, false)
 		_:
 			# Do nothing to the message
 			pass
@@ -80,21 +87,25 @@ func modify():
 			Globals.minigame_caesar_modify.emit(input_message, true)
 		"Caesar Decrypt":
 			Globals.minigame_caesar_modify.emit(input_message, false)
+		"Vigenere Encrypt":
+			Globals.minigame_vigenere_modify.emit(input_message, true)
+		"Vigenere Decrypt":
+			Globals.minigame_vigenere_modify.emit(input_message, false)
 		_:
 			pass
 	
 	# Wait for the minigame to finish, and read the results
-	
 	var data : Dictionary = await Globals.minigame_end_data
-	
 	if data.has("caesar_key"):
 		caesar_key = data["caesar_key"]
+	elif data.has("vigenere_key"):
+		vigenere_key = data["vigenere_key"]
 
 
 func _on_modify_button_pressed() -> void:
 	modify()
 
-
+#removes the tower
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 2:

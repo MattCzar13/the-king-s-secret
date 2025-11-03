@@ -11,6 +11,7 @@ func _ready() -> void:
 	Globals.example_signal.connect(print.bind("Example signal received!"))
 	
 	Globals.minigame_caesar_modify.connect(_on_minigame_caesar_modify)
+	Globals.minigame_vigenere_modify.connect(_on_minigame_vigenere_modify)
 	Globals.minigame_caesar_decrypt.connect(_on_minigame_caesar_decrypt)
 	Globals.minigame_vigenere_decrypt.connect(_on_minigame_vignere_decrypt)
 	Globals.minigame_threads_of_fate.connect(_on_minigame_threads_of_fate)
@@ -87,6 +88,16 @@ func _on_minigame_caesar_modify(input : String, encrypt : bool):
 		caesar_modify_minigame.plaintext = input
 		caesar_modify_minigame.encrypt = encrypt
 		minigame_parent.add_child(caesar_modify_minigame)
+		
+func _on_minigame_vigenere_modify(input : String, encrypt : bool):
+	var minigame_parent = minigamecontainer
+	if(minigame_parent.get_child_count() > 0):
+		printerr("Minigame already running!")
+	else:
+		var vigenere_modify_minigame = preload("res://scenes/minigames/vigenere_modify.tscn").instantiate()
+		vigenere_modify_minigame.plaintext = input
+		vigenere_modify_minigame.encrypt = encrypt
+		minigame_parent.add_child(vigenere_modify_minigame)
 
 func _on_minigame_success():
 	var minigame_parent = minigamecontainer

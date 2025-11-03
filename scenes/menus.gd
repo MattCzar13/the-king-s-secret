@@ -19,6 +19,14 @@ func _on_caesar_d_pressed() -> void:
 	Globals.building_action_ready.emit("Caesar Decrypt")
 	disable_build_options(true)
 
+func _on_vigenere_e_pressed() -> void:
+	Globals.building_action_ready.emit("Vigenere Encrypt")
+	disable_build_options(true)
+
+func _on_vigenere_d_pressed() -> void:
+	Globals.building_action_ready.emit("Vigenere Decrypt")
+	disable_build_options(true)
+
 func disable_build_options(disabled : bool):
 	for x in build_options:
 		x.disabled = disabled

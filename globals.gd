@@ -26,6 +26,7 @@ signal message_delivered
 
 signal minigame_caesar_modify(input : String, encrypt : bool)
 signal minigame_caesar_decrypt(key)
+signal minigame_vigenere_modify(input : String, encrypt : bool)
 signal minigame_vigenere_decrypt(key)
 signal minigame_threads_of_fate
 signal minigame_success
