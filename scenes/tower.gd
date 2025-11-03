@@ -84,13 +84,13 @@ func modify():
 	
 	match type:
 		"Caesar Encrypt":
-			Globals.minigame_caesar_modify.emit(input_message, true)
+			Globals.minigame_caesar_modify.emit(input_message, caesar_key, true)
 		"Caesar Decrypt":
-			Globals.minigame_caesar_modify.emit(input_message, false)
+			Globals.minigame_caesar_modify.emit(input_message, caesar_key, false)
 		"Vigenere Encrypt":
-			Globals.minigame_vigenere_modify.emit(input_message, true)
+			Globals.minigame_vigenere_modify.emit(input_message, vigenere_key, true)
 		"Vigenere Decrypt":
-			Globals.minigame_vigenere_modify.emit(input_message, false)
+			Globals.minigame_vigenere_modify.emit(input_message, vigenere_key, false)
 		_:
 			pass
 	

@@ -6,15 +6,16 @@ extends Control
 @onready var hint = $"VBoxContainer/Vigenere/Hint"
 
 #NOTE: Vigenere only works with upper case key - quirk of using unicode I think
-var secret_key = "".to_upper()
-var plaintext = Globals.message
-var ciphertext = Globals.vigenere(Globals.message, secret_key, true)
-var encrypt : bool = true
+var secret_key := "".to_upper()
+var plaintext := ""
+var ciphertext := Globals.vigenere(plaintext, secret_key, true)
+var encrypt := true
 
 func _ready() -> void:
 	plaintext_label.text = plaintext
 	ciphertext_label.text = ciphertext
-	key_label.text = "KEY: No Key Entered Yet"
+	key_label.text = "KEY: " + secret_key
+	$VBoxContainer/Vigenere/KeyText.text = secret_key
 	hint.get_popup().add_item("The King's favourite execution method")
 
 # TODO visualization for shifting letters

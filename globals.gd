@@ -24,9 +24,9 @@ signal update_path
 
 signal message_delivered
 
-signal minigame_caesar_modify(input : String, encrypt : bool)
+signal minigame_caesar_modify(input : String, key : int, encrypt : bool)
 signal minigame_caesar_decrypt(key)
-signal minigame_vigenere_modify(input : String, encrypt : bool)
+signal minigame_vigenere_modify(input : String, key : String, encrypt : bool)
 signal minigame_vigenere_decrypt(key)
 signal minigame_threads_of_fate
 signal minigame_success
@@ -79,7 +79,7 @@ func vigenere(text: String, key: String, encrypt: bool) -> String:
 	
 	if(key.length() < 1):
 		printerr("Vigenere key has invalid length")
-		return ""
+		return text
 	var plaintext = ""
 	var key_index = 0
 

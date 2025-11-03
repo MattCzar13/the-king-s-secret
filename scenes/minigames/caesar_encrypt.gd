@@ -5,15 +5,18 @@ extends Control
 @onready var ciphertext_label = $"VBoxContainer/CaesarCipher/ciphertext"
 
 var plaintext = Globals.message
-var encrypt : bool = true
+var encrypt := true
+var secret_key := 0
 
 func _ready() -> void:
 	plaintext_label.text = plaintext
 	ciphertext_label.text = plaintext
-	key_label.text = "KEY: %s (%d)" % [Globals.alpha[0], 0]
+	key_label.text = "KEY: %s (shifting plaintext by %d)" % [Globals.alpha[secret_key], secret_key]
+	$"VBoxContainer/CaesarCipher/KeySlider".value = secret_key
 
 func _on_key_slider_value_changed(key: float) -> void:
 	key_label.text = "KEY: %s (shifting plaintext by %d)" % [Globals.alpha[key], key]
+	secret_key = key
 	ciphertext_label.text = Globals.shift_message(plaintext, key, encrypt)
 	
 

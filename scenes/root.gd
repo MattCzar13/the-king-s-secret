@@ -79,23 +79,28 @@ func _on_minigame_threads_of_fate():
 		var tof_minigame = preload("res://scenes/minigames/entropy_gen.tscn").instantiate()
 		minigame_parent.add_child(tof_minigame)
 
-func _on_minigame_caesar_modify(input : String, encrypt : bool):
+func _on_minigame_caesar_modify(input : String, key: int, encrypt : bool):
+	print("minigame started with input ", input, ", key ", key, " and encrypt ", encrypt)
 	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
 		var caesar_modify_minigame = preload("res://scenes/minigames/caesar_encrypt.tscn").instantiate()
 		caesar_modify_minigame.plaintext = input
+		caesar_modify_minigame.secret_key = key
 		caesar_modify_minigame.encrypt = encrypt
 		minigame_parent.add_child(caesar_modify_minigame)
 		
-func _on_minigame_vigenere_modify(input : String, encrypt : bool):
+func _on_minigame_vigenere_modify(input : String, key: String, encrypt : bool):
+	print("minigame started with input ", input, ", key ", key, " and encrypt ", encrypt)
 	var minigame_parent = minigamecontainer
 	if(minigame_parent.get_child_count() > 0):
 		printerr("Minigame already running!")
 	else:
 		var vigenere_modify_minigame = preload("res://scenes/minigames/vigenere_modify.tscn").instantiate()
 		vigenere_modify_minigame.plaintext = input
+		vigenere_modify_minigame.ciphertext = Globals.vigenere(input, key, encrypt)
+		vigenere_modify_minigame.secret_key = key
 		vigenere_modify_minigame.encrypt = encrypt
 		minigame_parent.add_child(vigenere_modify_minigame)
 
