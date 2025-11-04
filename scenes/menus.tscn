@@ -24,15 +24,19 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="CheckButtonBackground" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Things" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CheckButtonBackground"]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/Things"]
+[node name="SendMessages" type="CheckButton" parent="VBoxContainer/CheckButtonBackground/HBoxContainer"]
 layout_mode = 2
 text = "Send the message!"
+
+[node name="ShowMessages" type="CheckButton" parent="VBoxContainer/CheckButtonBackground/HBoxContainer"]
+layout_mode = 2
+text = "Always Show Messages"
 
 [node name="BuildMenu" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
@@ -109,7 +113,8 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/Things/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/CheckButtonBackground/HBoxContainer/SendMessages" to="." method="_on_send_messages_toggled"]
+[connection signal="toggled" from="VBoxContainer/CheckButtonBackground/HBoxContainer/ShowMessages" to="." method="_on_show_messages_toggled"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE" to="." method="_on_caesar_e_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE" to="." method="_on_vigenere_e_pressed"]

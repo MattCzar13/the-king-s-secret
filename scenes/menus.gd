@@ -31,5 +31,8 @@ func disable_build_options(disabled : bool):
 	for x in build_options:
 		x.disabled = disabled
 
-func _on_check_button_toggled(toggled_on: bool) -> void:
+func _on_send_messages_toggled(toggled_on: bool) -> void:
 	message_toggle.emit(toggled_on)
+
+func _on_show_messages_toggled(toggled_on: bool) -> void:
+	Globals.always_show_messages = toggled_on

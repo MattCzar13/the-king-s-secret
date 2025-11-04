@@ -52,6 +52,8 @@ var message: String = "ALL HAIL THE KING"
 var entropy: int = 0
 var private_colour: Color
 
+var always_show_messages := false
+
 func shift_message(text: String, key: int, encrypt: bool) -> String:
 	var shifted = ""
 

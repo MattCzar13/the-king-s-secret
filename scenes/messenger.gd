@@ -8,6 +8,8 @@ class_name Messenger
 # The message that this messenger carries
 var message : String = ""
 
+var mouse_show_label := false
+
 @export var label : Label
 
 signal message_delivered(message : String)
@@ -24,9 +26,11 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	
 	progress += 100 * delta
+	
+	label.visible = mouse_show_label or Globals.always_show_messages
 
 func _on_messenger_mouse_entered() -> void:
-	label.visible = true
+	mouse_show_label = true
 
 func _on_messenger_mouse_exited() -> void:
-	label.visible = false
+	mouse_show_label = false

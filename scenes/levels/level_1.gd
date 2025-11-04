@@ -154,7 +154,7 @@ func spawn_messenger():
 
 func message_delivery_check(message : String):
 	if message == Globals.message:
-		player_progress += 1.0
+		player_progress += 3.0
 
 func _on_menus_message_toggle(toggled_on: bool) -> void:
 	sending_message = toggled_on

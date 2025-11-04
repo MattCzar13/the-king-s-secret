@@ -30,6 +30,7 @@ menus = NodePath("Menus")
 anchor_mode = 0
 
 [node name="MessengerSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="Enemies" type="Node" parent="."]
