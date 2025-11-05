@@ -11,7 +11,10 @@ var entropy_value = 0.0
 
 func calculate_entropy():
 	var total = 0.0
+	var x = 0
 	for pos in thread.points:
+		print(x)
+		x += 1
 		total += pos.x * 0.08 + pos.y * 0.08
 		
 	entropy_value = fmod(total, 1000)  # range 0–999
@@ -25,11 +28,12 @@ func _on_analysis_button_up() -> void:
 	potion.show()
 
 func _on_timer_timeout() -> void:
-	thread.add_point(mouse.position)
-	draw_timer.start()
+	if (thread.get_points().size() == 0 ||
+		thread.get_points().size() > 0 && thread.get_points()[-1] != mouse.position):
+		thread.add_point(mouse.position)
 
 func _on_finish_pressed() -> void:
-	if thread.points.size() < 50:
+	if thread.get_points().size() < 50:
 		print("Not enough entropy!")
 	else:
 		attempt_fire_signal("minigame_success")
