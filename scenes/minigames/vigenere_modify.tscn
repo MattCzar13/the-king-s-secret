@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ya74xcpydp3k"]
+[gd_scene load_steps=3 format=3 uid="uid://ya74xcpydp3k"]
 
 [ext_resource type="Script" uid="uid://b3gnuwptksbeh" path="res://scenes/minigames/vigenere_modify.gd" id="1_ras7p"]
+[ext_resource type="Texture2D" uid="uid://ntwdfdnyucqu" path="res://assets/0044-parchment-paper-texture-seamless-hr.jpg" id="2_gqy2y"]
 
 [node name="ViginereDecrypt" type="Control"]
 layout_mode = 3
@@ -11,6 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ras7p")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -8.0
+offset_right = 272.0
+offset_bottom = 280.0
+texture = ExtResource("2_gqy2y")
+expand_mode = 2
+stretch_mode = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 205.0
@@ -19,6 +29,7 @@ theme_override_constants/separation = 20
 
 [node name="Vigenere" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Vigenere Cipher"
 
 [node name="plaintext" type="Label" parent="VBoxContainer/Vigenere"]
@@ -27,6 +38,7 @@ offset_left = 1.0
 offset_top = 37.0
 offset_right = 192.0
 offset_bottom = 60.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Hello this is the message"
 
 [node name="ciphertext" type="Label" parent="VBoxContainer/Vigenere"]
@@ -35,6 +47,7 @@ offset_left = 1.0
 offset_top = 61.0
 offset_right = 192.0
 offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Hello this is the message"
 
 [node name="SecretKey" type="Label" parent="VBoxContainer/Vigenere"]
@@ -42,6 +55,7 @@ layout_mode = 0
 offset_top = 92.0
 offset_right = 81.0
 offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Secret Key"
 
 [node name="KeyText" type="LineEdit" parent="VBoxContainer/Vigenere"]
@@ -57,6 +71,7 @@ offset_left = -2.0
 offset_top = 160.0
 offset_right = 85.0
 offset_bottom = 191.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Show Key Hint"
 
 [node name="submitButton" type="Button" parent="."]

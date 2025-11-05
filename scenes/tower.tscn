@@ -57,7 +57,7 @@ animations = [{
 radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay4al"]
-size = Vector2(64, 64)
+size = Vector2(64, 107)
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("typelabel") groups=["Tower"]]
 script = ExtResource("1_ay4al")
@@ -68,6 +68,7 @@ position = Vector2(-2, -61)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Sprite"]
 texture_filter = 1
+position = Vector2(1, -3)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qfw7u")
 autoplay = "default"
@@ -79,10 +80,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -51.5
-offset_top = -64.0
-offset_right = 51.5
-offset_bottom = -41.0
+offset_left = -49.5
+offset_top = -68.0
+offset_right = 53.5
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Does nothing"
@@ -96,15 +97,17 @@ shape = SubResource("CircleShape2D_ay4al")
 [node name="MouseOverArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseOverArea"]
+position = Vector2(0, -54)
 shape = SubResource("RectangleShape2D_ay4al")
 
 [node name="ModifyButton" type="Button" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -33.0
-offset_right = 29.0
-offset_bottom = 31.0
+offset_left = -31.0
+offset_top = 5.0
+offset_right = 31.0
+offset_bottom = 36.0
 grow_horizontal = 2
 disabled = true
 text = "Modify"

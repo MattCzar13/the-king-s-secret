@@ -29,7 +29,6 @@ layout_mode = 2
 text = "Press [P] to open / close the signal menu"
 
 [node name="Panel" type="PanelContainer" parent="VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 size_flags_vertical = 3

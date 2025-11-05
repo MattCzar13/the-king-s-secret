@@ -45,6 +45,7 @@ func _ready():
 	if is_static:
 		modify_button.disabled = true
 		modify_button.visible = false
+	$"Sprite".modulate = TowerColours[type]
 
 # Change messengers's message (if the tower has been setup correctly)
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -63,15 +64,19 @@ func read_and_write(m : Messenger):
 	
 	match type:
 		"Caesar Encrypt":
+			print("encrypting messenger with caesar, key: ", caesar_key)
 			# Encrypt the passing message
 			m.message = Globals.shift_message(input_message, caesar_key, true)
 		"Caesar Decrypt":
+			print("decrypting messenger with caesar, key: ", caesar_key)
 			# Decrypt the passing message
 			m.message = Globals.shift_message(input_message, caesar_key, false)
 		"Vigenere Encrypt":
+			print("encrypting messenger with vigenere, key: ", vigenere_key)
 			# Encrypt the passing message
 			m.message = Globals.vigenere(input_message, vigenere_key, true)
 		"Vigenere Decrypt":
+			print("decrypting messenger with vigenere, key: ", vigenere_key)
 			# Decrypt the passing message
 			m.message = Globals.vigenere(input_message, vigenere_key, false)
 		_:

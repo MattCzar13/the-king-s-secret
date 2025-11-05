@@ -82,7 +82,6 @@ func vigenere(text: String, key: String, encrypt: bool) -> String:
 	key = filtered_key
 	
 	if(key.length() < 1):
-		printerr("Vigenere key has invalid length")
 		return text
 	var plaintext = ""
 	var key_index = 0

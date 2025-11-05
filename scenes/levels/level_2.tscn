@@ -10,7 +10,7 @@
 [sub_resource type="Curve2D" id="Curve2D_6iamk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x42e6"]
-size = Vector2(249, 721)
+size = Vector2(249, 517)
 
 [node name="Level 2" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemies", "enemy_area", "path", "menus") groups=["Level"]]
 script = ExtResource("1_l37oo")
@@ -36,13 +36,13 @@ autostart = true
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_qpwj6")]
-position = Vector2(574, 77)
+position = Vector2(729, 225)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_qpwj6")]
-position = Vector2(684, 62)
+position = Vector2(788, 276)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_qpwj6")]
-position = Vector2(637, 118)
+position = Vector2(851, 330)
 
 [node name="Castle A" parent="." instance=ExtResource("3_ibugp")]
 position = Vector2(215, 515)
@@ -58,13 +58,13 @@ curve = SubResource("Curve2D_6iamk")
 [node name="Enemy areas" type="Node" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy areas"]
-position = Vector2(632.5, 357.5)
+position = Vector2(820.5, 458.5)
 shape = SubResource("RectangleShape2D_x42e6")
 
 [node name="Tower" parent="." instance=ExtResource("5_3p04p")]
-position = Vector2(403, 373)
-type = "Caesar Encrypt"
-caesar_key = 5
+position = Vector2(350, 550)
+type = "Vigenere Encrypt"
+vigenere_key = "HANGING"
 is_static = true
 
 [node name="background" type="Sprite2D" parent="."]
