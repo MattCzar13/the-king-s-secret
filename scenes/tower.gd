@@ -11,6 +11,13 @@ enum TowerState {
 	BUILT,
 }
 
+var TowerColours = {
+	"Caesar Encrypt": Color.WHITE,
+	"Caesar Decrypt": Color.YELLOW,
+	"Vigenere Encrypt": Color.VIOLET,
+	"Vigenere Decrypt": Color.AQUA,
+}
+
 # Assign this tower a "type", which decides what code it runs when a message runs through it
 @export_enum("None", "Caesar Encrypt", "Caesar Decrypt", "Vigenere Encrypt", "Vigenere Decrypt") var type : String:
 	set(value):
@@ -22,10 +29,22 @@ enum TowerState {
 @export var caesar_key := 0
 @export var vigenere_key := ""
 
+## If true, this tower cannot be edited after placement (no modification, no removal).
+## Intended for use as pre-placed towers in certain levels. Should not be manually placeable.
+@export var is_static : bool = false
+
 # The last message that ran through this tower, updated with each passing message
 var input_message : String = ""
 
 var tower_state = TowerState.PREVIEW
+
+func _ready():
+	# This runs in case a tower placed by us in a scene is set to static
+	var modify_button = $"ModifyButton"
+	
+	if is_static:
+		modify_button.disabled = true
+		modify_button.visible = false
 
 # Change messengers's message (if the tower has been setup correctly)
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -65,7 +84,7 @@ func set_tower_state(desired_state: TowerState):
 	var collision = $"Area2D/CollisionShape2D"
 	
 	if desired_state == TowerState.BUILT:
-		sprite.modulate = Color.WHITE
+		sprite.modulate = TowerColours[type]
 		modify_button.disabled = false
 		modify_button.visible = true
 		collision.disabled = false
@@ -75,6 +94,10 @@ func set_tower_state(desired_state: TowerState):
 		modify_button.disabled = true
 		modify_button.visible = false
 		collision.disabled = true
+	
+	if is_static:
+		modify_button.disabled = true
+		modify_button.visible = false
 		
 	tower_state = desired_state
 	
@@ -108,6 +131,9 @@ func _on_modify_button_pressed() -> void:
 #removes the tower
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
+		if is_static:
+			return
+		
 		if event.button_index == 2:
 			queue_free()
 			Globals.update_path.emit()

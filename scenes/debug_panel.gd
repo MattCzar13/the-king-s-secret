@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
 	# Unhide myself
-	visible = true
+	# visible = true
 	
 	# Hide the panel by default
 	panel.visible = false

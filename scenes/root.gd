@@ -2,7 +2,11 @@ extends Node
 
 ## This is our root node, so this script is our "main".
 
+## List of level scenes (should be in order)
+@export var level_list : Array[PackedScene]
+
 @export var gamecontainer : Node
+@export var levelcontainer : Node
 @export var minigamecontainer : Node
 
 @export var popup : PopupNode
@@ -27,9 +31,35 @@ func _ready() -> void:
 	Globals.send_popup.connect(show_popup)
 	
 	popup.visible = false
+	
+	Globals.level_number = 1
+	load_level()
 
 func _physics_process(delta: float) -> void:
 	pass
+
+func load_level():
+	# Loads a level depending on the Global level number
+	# If it didn't change, this essentially restarts the level
+	
+	print("Loading level #" + str(Globals.level_number) + "...")
+	
+	var packedscene = level_list.get(Globals.level_number - 1)
+	if !packedscene:
+		printerr("Could not find level " + str(Globals.level_number) + " in level list (position " + str(Globals.level_number - 1) + ")!")
+		printerr("Loading first level in array instead.")
+		packedscene = level_list.front()
+		Globals.level_number = 1
+		if !packedscene:
+			printerr("Okay there's just no levels in the level list >:(")
+			return
+	
+	for x in levelcontainer.get_children():
+		x.queue_free()
+	
+	levelcontainer.add_child(packedscene.instantiate())
+	
+	print("Level #" + str(Globals.level_number) + " loaded successfully!")
 
 func show_popup(title : String, content : String):
 	# Unhide the popup node, pause the game, await popup being closed, then unpause
@@ -41,6 +71,13 @@ func show_popup(title : String, content : String):
 	gamecontainer.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	await popup.closed
+	
+	match title:
+		"Level complete!":
+			Globals.level_number += 1
+			load_level()
+		"Level failed!":
+			load_level()
 	
 	popup.visible = false
 	gamecontainer.process_mode = Node.PROCESS_MODE_INHERIT

@@ -29,6 +29,7 @@ window/stretch/mode="viewport"
 
 Tower=""
 Messenger=""
+Level="There should only ever be one of these present at any moment."
 
 [input]
 

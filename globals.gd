@@ -40,6 +40,8 @@ signal level_completed
 signal level_failed
 signal level_load(number : int)
 
+var level_number : int = 1
+
 var level_information : Dictionary = {
 	"messages_delivered" : 0,
 	"message_delivery_goal" : 4
