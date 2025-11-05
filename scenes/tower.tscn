@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://n88y1vrsh0ri"]
+[gd_scene load_steps=5 format=3 uid="uid://n88y1vrsh0ri"]
 
 [ext_resource type="Texture2D" uid="uid://btdcfi2ki51hw" path="res://icon.svg" id="1_2x682"]
 [ext_resource type="Script" uid="uid://bcxt57hs3gndd" path="res://scenes/tower.gd" id="1_ay4al"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ay4al"]
-radius = 32.0
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay4al"]
+size = Vector2(64, 64)
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("typelabel") groups=["Tower"]]
 script = ExtResource("1_ay4al")
@@ -35,8 +38,12 @@ horizontal_alignment = 1
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(0.05, 0.05)
 shape = SubResource("CircleShape2D_ay4al")
+
+[node name="MouseOverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseOverArea"]
+shape = SubResource("RectangleShape2D_ay4al")
 
 [node name="ModifyButton" type="Button" parent="."]
 anchors_preset = 5
@@ -50,5 +57,5 @@ disabled = true
 text = "Modify"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="input_event" from="MouseOverArea" to="." method="_on_area_2d_input_event"]
 [connection signal="pressed" from="ModifyButton" to="." method="_on_modify_button_pressed"]

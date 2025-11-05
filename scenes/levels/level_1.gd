@@ -6,6 +6,8 @@ class_name Level
 @export var title : String
 @export_multiline var description : String
 @export_multiline var hint : String
+@export_multiline var victory_description : String
+@export_multiline var fail_description : String
 
 @export_category("References")
 
@@ -37,6 +39,7 @@ var player_progress : float = 0.0:
 		
 		if player_progress >= 100.0:
 			Globals.level_completed.emit()
+			Globals.send_popup.emit("Level complete!", victory_description)
 var enemy_progress : float = 0.0:
 	set(value):
 		enemy_progress = value
@@ -44,6 +47,7 @@ var enemy_progress : float = 0.0:
 		
 		if enemy_progress >= 100.0:
 			Globals.level_failed.emit()
+			Globals.send_popup.emit("Level failed!", fail_description)
 
 @export var menus : Menus
 
@@ -58,6 +62,8 @@ func _ready() -> void:
 	update_path()
 	
 	await get_tree().create_timer(0.5).timeout
+	
+	update_path()
 	
 	Globals.send_popup.emit(title, description)
 
@@ -154,7 +160,7 @@ func spawn_messenger():
 
 func message_delivery_check(message : String):
 	if message == Globals.message:
-		player_progress += 3.0
+		player_progress += 5.0
 
 func _on_menus_message_toggle(toggled_on: bool) -> void:
 	sending_message = toggled_on
