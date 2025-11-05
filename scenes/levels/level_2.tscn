@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1nef8k2lrrlx"]
+[gd_scene load_steps=9 format=3 uid="uid://d1nef8k2lrrlx"]
 
 [ext_resource type="Script" uid="uid://0ckqtfclytib" path="res://scenes/levels/level_1.gd" id="1_l37oo"]
 [ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="2_qpwj6"]
 [ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="3_ibugp"]
 [ext_resource type="PackedScene" uid="uid://dfvua4lkimayw" path="res://scenes/menus.tscn" id="4_8qukl"]
 [ext_resource type="PackedScene" uid="uid://n88y1vrsh0ri" path="res://scenes/tower.tscn" id="5_3p04p"]
+[ext_resource type="Texture2D" uid="uid://wcnsnfkxtqdb" path="res://assets/forest-day.png" id="6_qpwj6"]
 
 [sub_resource type="Curve2D" id="Curve2D_6iamk"]
 
@@ -65,6 +66,12 @@ position = Vector2(403, 373)
 type = "Caesar Encrypt"
 caesar_key = 5
 is_static = true
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(639, 203)
+scale = Vector2(0.6737951, 0.59906936)
+texture = ExtResource("6_qpwj6")
 
 [connection signal="timeout" from="MessengerSpawnTimer" to="." method="_on_messenger_spawn_timer_timeout"]
 [connection signal="message_toggle" from="Menus" to="." method="_on_menus_message_toggle"]

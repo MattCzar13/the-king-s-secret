@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n88y1vrsh0ri"]
+[gd_scene load_steps=12 format=3 uid="uid://n88y1vrsh0ri"]
 
 [ext_resource type="Script" uid="uid://bcxt57hs3gndd" path="res://scenes/tower.gd" id="1_ay4al"]
 [ext_resource type="Texture2D" uid="uid://bstltejaodbnk" path="res://assets/Banner.png" id="2_ay4al"]
@@ -89,7 +89,6 @@ text = "Does nothing"
 horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2, -61)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ay4al")
