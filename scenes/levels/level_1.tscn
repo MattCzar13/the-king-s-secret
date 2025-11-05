@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://biwwlsdfm47i3" path="res://scenes/castle.tscn" id="2_6iamk"]
 [ext_resource type="PackedScene" uid="uid://c8fcqyfic7k4b" path="res://scenes/enemy.tscn" id="4_x42e6"]
 [ext_resource type="PackedScene" uid="uid://dfvua4lkimayw" path="res://scenes/menus.tscn" id="5_6761a"]
-[ext_resource type="PackedScene" uid="uid://n88y1vrsh0ri" path="res://scenes/tower.tscn" id="5_sk5k4"]
+
+[ext_resource type="Texture2D" uid="uid://wcnsnfkxtqdb" path="res://assets/forest-day.png" id="5_sk5k4"]
+
 
 [sub_resource type="Curve2D" id="Curve2D_6iamk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x42e6"]
-size = Vector2(249, 721)
+size = Vector2(329, 411)
 
 [node name="Level 1" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemies", "enemy_area", "path", "menus") groups=["Level"]]
 script = ExtResource("1_ksju7")
@@ -39,19 +41,19 @@ autostart = true
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("4_x42e6")]
-position = Vector2(574, 77)
+position = Vector2(534, 197)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("4_x42e6")]
-position = Vector2(684, 62)
+position = Vector2(736, 200)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("4_x42e6")]
-position = Vector2(637, 118)
+position = Vector2(642, 226)
 
 [node name="Castle A" parent="." instance=ExtResource("2_6iamk")]
-position = Vector2(215, 515)
+position = Vector2(148, 434)
 
 [node name="Castle B" parent="." instance=ExtResource("2_6iamk")]
-position = Vector2(1031, 499)
+position = Vector2(1119, 533)
 
 [node name="Messenger Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6iamk")
@@ -61,14 +63,15 @@ curve = SubResource("Curve2D_6iamk")
 [node name="Enemy areas" type="Node" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy areas"]
-position = Vector2(632.5, 357.5)
+position = Vector2(644.5, 389.5)
 shape = SubResource("RectangleShape2D_x42e6")
 
-[node name="Tower" parent="." instance=ExtResource("5_sk5k4")]
-position = Vector2(403, 373)
-type = "Caesar Encrypt"
-caesar_key = 5
-is_static = true
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(639, 203)
+scale = Vector2(0.6737951, 0.59906936)
+texture = ExtResource("5_sk5k4")
 
 [connection signal="timeout" from="MessengerSpawnTimer" to="." method="_on_messenger_spawn_timer_timeout"]
 [connection signal="message_toggle" from="Menus" to="." method="_on_menus_message_toggle"]

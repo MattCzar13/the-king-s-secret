@@ -11,7 +11,14 @@ enum TowerState {
 	BUILT,
 }
 
-## Assign this tower a "type", which decides what code it runs when a message runs through it
+var TowerColours = {
+	"Caesar Encrypt": Color.WHITE,
+	"Caesar Decrypt": Color.YELLOW,
+	"Vigenere Encrypt": Color.VIOLET,
+	"Vigenere Decrypt": Color.AQUA,
+}
+
+# Assign this tower a "type", which decides what code it runs when a message runs through it
 @export_enum("None", "Caesar Encrypt", "Caesar Decrypt", "Vigenere Encrypt", "Vigenere Decrypt") var type : String:
 	set(value):
 		type = value
@@ -77,7 +84,7 @@ func set_tower_state(desired_state: TowerState):
 	var collision = $"Area2D/CollisionShape2D"
 	
 	if desired_state == TowerState.BUILT:
-		sprite.modulate = Color.WHITE
+		sprite.modulate = TowerColours[type]
 		modify_button.disabled = false
 		modify_button.visible = true
 		collision.disabled = false

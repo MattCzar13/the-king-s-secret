@@ -1,7 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0dh6ts2d8qxb"]
+[gd_scene load_steps=8 format=3 uid="uid://b0dh6ts2d8qxb"]
 
 [ext_resource type="Script" uid="uid://xuxrbn07bcpy" path="res://scenes/messenger.gd" id="1_l8t3m"]
-[ext_resource type="Texture2D" uid="uid://btdcfi2ki51hw" path="res://icon.svg" id="2_poq2w"]
+[ext_resource type="Texture2D" uid="uid://d2e0apd7i1clh" path="res://assets/Knight_F1_A.png" id="2_poq2w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht634"]
+atlas = ExtResource("2_poq2w")
+region = Rect2(0, 40, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vqng"]
+atlas = ExtResource("2_poq2w")
+region = Rect2(16, 40, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtw70"]
+atlas = ExtResource("2_poq2w")
+region = Rect2(32, 40, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdb6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht634")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vqng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtw70")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poq2w"]
 radius = 16.0
@@ -12,10 +41,14 @@ loop = false
 script = ExtResource("1_l8t3m")
 label = NodePath("Label")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 0, 1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_poq2w")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xdb6o")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.15989624
 
 [node name="Messenger" type="Area2D" parent="."]
 
@@ -29,8 +62,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -36.0
-offset_top = -23.0
+offset_top = -35.0
 offset_right = 36.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "test label"
