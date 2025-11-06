@@ -10,6 +10,8 @@ var secret_key := 0
 
 func _ready() -> void:
 	plaintext_label.text = plaintext
+	if plaintext == "":
+		plaintext_label.text = "A preview will appear here\nonce a messenger arrives"
 	ciphertext_label.text = plaintext
 	key_label.text = "KEY: %s (shifting plaintext by %d)" % [Globals.alpha[secret_key], secret_key]
 	$"VBoxContainer/CaesarCipher/KeySlider".value = secret_key

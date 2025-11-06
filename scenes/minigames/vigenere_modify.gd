@@ -13,6 +13,8 @@ var encrypt := true
 
 func _ready() -> void:
 	plaintext_label.text = plaintext
+	if plaintext == "":
+		plaintext_label.text = "A preview will appear here\nonce a messenger arrives"
 	ciphertext_label.text = ciphertext
 	key_label.text = "KEY: " + secret_key
 	$VBoxContainer/Vigenere/KeyText.text = secret_key
