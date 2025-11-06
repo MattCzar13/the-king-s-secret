@@ -16,7 +16,7 @@ func _ready() -> void:
 	ciphertext_label.text = ciphertext
 	key_label.text = "KEY: " + secret_key
 	$VBoxContainer/Vigenere/KeyText.text = secret_key
-	hint.get_popup().add_item("The King's favourite execution method")
+	#hint.get_popup().add_item("The King's favourite execution method")
 
 # TODO visualization for shifting letters
 

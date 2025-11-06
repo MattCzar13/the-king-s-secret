@@ -69,11 +69,11 @@ text = "Caesar (Decrypt)"
 
 [node name="VigenereE" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Vigenere (Encrypt)"
+text = "Vigenère (Encrypt)"
 
 [node name="VigenereD" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Vigenere (Decrypt)"
+text = "Vigenère (Decrypt)"
 
 [node name="Entropy" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
 layout_mode = 2
