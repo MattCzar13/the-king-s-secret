@@ -26,6 +26,9 @@ func _on_vigenere_e_pressed() -> void:
 func _on_vigenere_d_pressed() -> void:
 	Globals.building_action_ready.emit("Vigenere Decrypt")
 	disable_build_options(true)
+	
+func _on_help_pressed() -> void:
+	Globals.send_popup.emit("", "")
 
 func disable_build_options(disabled : bool):
 	for x in build_options:

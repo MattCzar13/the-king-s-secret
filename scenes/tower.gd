@@ -95,7 +95,7 @@ func set_tower_state(desired_state: TowerState):
 		collision.disabled = false
 	
 	if desired_state == TowerState.PREVIEW:
-		sprite.modulate = Color(Color.WHITE, 0.75)
+		sprite.modulate = Color(Color.WHITE, 0.25)
 		modify_button.disabled = true
 		modify_button.visible = false
 		collision.disabled = true

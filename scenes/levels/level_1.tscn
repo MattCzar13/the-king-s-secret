@@ -14,12 +14,14 @@ size = Vector2(329, 411)
 
 [node name="Level 1" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemies", "enemy_area", "path", "menus") groups=["Level"]]
 script = ExtResource("1_ksju7")
-title = "Humble Beginnings"
-description = "You are tasked with overseeing the delivery of the King's message from the West Castle to the East Castle. Your messengers will automatically make the path to the East Castle, carrying the message and stopping along any towers you build along the way (left to right).
+title = "Level 1 - Humble Beginnings"
+description = "You are tasked with delivering important messages from the West Castle to the East Castle, on behalf of our King. These messages contain critical information about our kingdom's operations.
 
-Unfortunately, your enemies have been camping outside of your territory, and plan on stealing the message from your messengers any chance they get. This cannot happen; if the enemies were to learn of our secret message, our kingdom will surely fall.
+We have messengers to deliver these for us, but our enemies have started intercepting them in transit. If they continue to learn of our secrets, our kingdom will surely fall!
 
-Your goal is to encrypt these messages, so the enemies cannot gain the information that these messages hold. You must also remember to decrypt these messages before they arrive at the East Castle, otherwise that castle will not be able to read the message themselves."
+Luckily, our brillant wizard Cypher has come up with a magical incantation he says will hide our messages -- he called it \"Caesar Encryption\", or something like that, and apparently it works by choosing a secret letter of the alphabet. I couldn't tell you how it works, but we have already installed a Caesar Encryption outpost for our messengers to stop at on their journey. Cypher says these outposts should protect our messages for now!
+
+The problem is that the West Tower apparently can't read our messages. You will have to figure out how to reverse whatever Cypher is doing to the messages. Please complete his scheme, so our enemies cannot gain the information that these messages hold!"
 hint = "This is a placeholder."
 victory_description = "This is a placeholder. You've successfully delivered the message."
 fail_description = "This is a placeholder. Your enemies caught your full message before you could deliver it successfully."

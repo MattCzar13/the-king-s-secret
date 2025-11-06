@@ -12,8 +12,8 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_dve7u")
 build_options = [NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE"), NodePath("VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereD")]
-player_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer/ProgressBar")
-enemy_progress_bar = NodePath("InfoMenu/VBoxContainer/HBoxContainer2/ProgressBar")
+player_progress_bar = NodePath("InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer/ProgressBar")
+enemy_progress_bar = NodePath("InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer2/ProgressBar")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,7 +45,12 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BuildMenu"]
 layout_mode = 2
 
-[node name="Buildmenu" type="Label" parent="VBoxContainer/BuildMenu/HBoxContainer"]
+[node name="BuildMenuContainer" type="MarginContainer" parent="VBoxContainer/BuildMenu/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Buildmenu" type="Label" parent="VBoxContainer/BuildMenu/HBoxContainer/BuildMenuContainer"]
 layout_mode = 2
 text = "Choose a type and LEFT CLICK to place a tower.
 RIGHT CLICK on a tower in the world to remove it."
@@ -83,35 +88,52 @@ offset_top = -64.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InfoMenu"]
+[node name="InfoMenuContainer" type="MarginContainer" parent="InfoMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoMenu/InfoMenuContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InfoMenu/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoMenu/InfoMenuContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="InfoMenu/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Messages sent successfully"
 
-[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/VBoxContainer/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="InfoMenu/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="InfoMenu/InfoMenuContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="InfoMenu/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Enemy knowledge"
 
-[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/VBoxContainer/HBoxContainer2"]
+[node name="ProgressBar" type="ProgressBar" parent="InfoMenu/InfoMenuContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="Help" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.97300005
+anchor_top = 0.044000003
+anchor_right = 0.97300005
+anchor_bottom = 0.044000003
+offset_left = -16.440063
+offset_top = -15.680002
+offset_right = 17.559937
+offset_bottom = 15.319998
+text = "?"
 
 [connection signal="toggled" from="VBoxContainer/CheckButtonBackground/HBoxContainer/SendMessages" to="." method="_on_send_messages_toggled"]
 [connection signal="toggled" from="VBoxContainer/CheckButtonBackground/HBoxContainer/ShowMessages" to="." method="_on_show_messages_toggled"]
@@ -119,3 +141,4 @@ size_flags_horizontal = 8
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE" to="." method="_on_vigenere_e_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereD" to="." method="_on_vigenere_d_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_help_pressed"]

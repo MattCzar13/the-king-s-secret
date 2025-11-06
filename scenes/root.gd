@@ -65,8 +65,12 @@ func show_popup(title : String, content : String):
 	# Unhide the popup node, pause the game, await popup being closed, then unpause
 	# This could be used for many cases (pause screen, info dump, etc)
 	
-	popup.title.text = title
-	popup.content.text = content
+	# Use existing values if not provided
+	if title != "":
+		popup.title.text = title
+	if content != "":
+		popup.content.text = content
+		
 	popup.visible = true
 	gamecontainer.process_mode = Node.PROCESS_MODE_DISABLED
 	
