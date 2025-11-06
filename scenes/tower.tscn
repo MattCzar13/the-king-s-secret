@@ -61,7 +61,22 @@ size = Vector2(64, 107)
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("typelabel") groups=["Tower"]]
 script = ExtResource("1_ay4al")
-typelabel = NodePath("Sprite/TypeLabel")
+typelabel = NodePath("TypeLabel")
+
+[node name="TypeLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.5
+offset_top = -129.0
+offset_right = 51.5
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Does nothing"
+horizontal_alignment = 1
 
 [node name="Sprite" type="CanvasGroup" parent="."]
 position = Vector2(-2, -61)
@@ -73,21 +88,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qfw7u")
 autoplay = "default"
 frame_progress = 0.9769808
-
-[node name="TypeLabel" type="Label" parent="Sprite"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -49.5
-offset_top = -68.0
-offset_right = 53.5
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Does nothing"
-horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 

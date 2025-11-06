@@ -75,6 +75,10 @@ text = "Vigenere (Encrypt)"
 layout_mode = 2
 text = "Vigenere (Decrypt)"
 
+[node name="Entropy" type="Button" parent="VBoxContainer/BuildMenu/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Entropy"
+
 [node name="InfoMenu" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 1
@@ -141,4 +145,5 @@ text = "?"
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/CaesarD" to="." method="_on_caesar_d_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereE" to="." method="_on_vigenere_e_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/VigenereD" to="." method="_on_vigenere_d_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuildMenu/HBoxContainer/GridContainer/Entropy" to="." method="_on_entropy_pressed"]
 [connection signal="pressed" from="Help" to="." method="_on_help_pressed"]

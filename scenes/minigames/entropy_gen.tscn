@@ -12,6 +12,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_g40lp"]
 
 [node name="EntropyGenerator" type="Node2D"]
+z_index = 10
 script = ExtResource("1_g40lp")
 
 [node name="TextureRect" type="TextureRect" parent="."]

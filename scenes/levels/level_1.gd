@@ -99,17 +99,7 @@ func handle_enemy_decision(enemy : Enemy):
 func prepare_to_place_tower(type : String):
 	var obj : Tower = obj_tower.instantiate()
 	
-	match type:
-		"Caesar Encrypt":
-			obj.type = "Caesar Encrypt"
-		"Caesar Decrypt":
-			obj.type = "Caesar Decrypt"
-		"Vigenere Encrypt":
-			obj.type = "Vigenere Encrypt"
-		"Vigenere Decrypt":
-			obj.type = "Vigenere Decrypt"
-		_:
-			pass
+	obj.type = type
 	
 	obj.set_tower_state(Tower.TowerState.PREVIEW)
 	pending_build_on_click = obj

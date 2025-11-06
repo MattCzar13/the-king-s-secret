@@ -13,13 +13,14 @@ enum TowerState {
 
 var TowerColours = {
 	"Caesar Encrypt": Color.WHITE,
-	"Caesar Decrypt": Color.YELLOW,
-	"Vigenere Encrypt": Color.VIOLET,
-	"Vigenere Decrypt": Color.AQUA,
+	"Caesar Decrypt": Color.WHITE.darkened(0.3),
+	"Vigenere Encrypt": Color.CYAN,
+	"Vigenere Decrypt": Color.CYAN.darkened(0.3),
+	"ToF": Color.YELLOW,
 }
 
 # Assign this tower a "type", which decides what code it runs when a message runs through it
-@export_enum("None", "Caesar Encrypt", "Caesar Decrypt", "Vigenere Encrypt", "Vigenere Decrypt") var type : String:
+@export_enum("None", "Caesar Encrypt", "Caesar Decrypt", "Vigenere Encrypt", "Vigenere Decrypt", "ToF") var type : String:
 	set(value):
 		type = value
 		typelabel.text = type
@@ -119,6 +120,8 @@ func modify():
 			Globals.minigame_vigenere_modify.emit(input_message, vigenere_key, true)
 		"Vigenere Decrypt":
 			Globals.minigame_vigenere_modify.emit(input_message, vigenere_key, false)
+		"ToF":
+			Globals.minigame_threads_of_fate.emit()
 		_:
 			pass
 	
