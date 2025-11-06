@@ -52,8 +52,8 @@ theme_override_constants/margin_right = 5
 
 [node name="Buildmenu" type="Label" parent="VBoxContainer/BuildMenu/HBoxContainer/BuildMenuContainer"]
 layout_mode = 2
-text = "Choose a type and LEFT CLICK to place a tower.
-RIGHT CLICK on a tower in the world to remove it."
+text = "Choose a type and LEFT CLICK to place an outpost.
+RIGHT CLICK on an outpost in the world to remove it."
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/BuildMenu/HBoxContainer"]
 layout_mode = 2

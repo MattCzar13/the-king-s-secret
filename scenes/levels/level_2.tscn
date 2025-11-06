@@ -14,11 +14,21 @@ size = Vector2(249, 517)
 
 [node name="Level 2" type="Node" node_paths=PackedStringArray("starting_castle", "ending_castle", "enemies", "enemy_area", "path", "menus") groups=["Level"]]
 script = ExtResource("1_l37oo")
-title = "Level 2"
-description = "This is actually level 2, but it's just a clone of the first one for now. This is just to prove that the level loading thing is working."
+title = "Level 2 - Passphrases"
+description = "Our Caesar Encryption was working for quite a while, but we have been getting reports from our messengers that the enemy might be onto our little magic trick... we have to admit that this \"Caesar Encryption\" thing was a little easy to figure out. There are only 26 letters in the alphabet to guess, after all. Luckily, it looks like our genius wizard Cypher had more tricks up his sleev-- err, robe, I suppose. 
+
+He said that he developed an upgraded version of his scheme called the \"Vigenère Encryption\". Instead of a single letter, apparently it uses a whole word as a secret! Surely that should keep the King's enemies at bay.
+
+I think you should have no problem setting this scheme up, seeing how easily you handled the Caesar one. However, the King is the one that chose the secret word, and he's not telling us what it was. Although, he HAS been obsessed lately with his favorite execution method... I would not be surprised one bit if that had something to do with it."
 hint = "This is a placeholder."
-victory_description = "This is a placeholder. You've successfully delivered the message."
-fail_description = "This is a placeholder. Your enemies caught your full message before you could deliver it successfully."
+victory_description = "Well done! Our messages seem to be secure... at least, for now.
+
+Thanks for playing The King's Secret! That's all we have for now. 
+
+Press OK to return to Level 1."
+fail_description = "Uh oh! The enemy has intercepted too many of our messages... 
+
+Try again, but make sure your decryption outpost is closer to the West Tower."
 starting_castle = NodePath("Castle A")
 ending_castle = NodePath("Castle B")
 enemies = [NodePath("Enemies/Enemy"), NodePath("Enemies/Enemy2"), NodePath("Enemies/Enemy3")]

@@ -101,6 +101,7 @@ position = Vector2(0, -54)
 shape = SubResource("RectangleShape2D_ay4al")
 
 [node name="ModifyButton" type="Button" parent="."]
+z_index = 10
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

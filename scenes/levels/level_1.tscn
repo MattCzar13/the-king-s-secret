@@ -23,8 +23,12 @@ Luckily, our brillant wizard Cypher has come up with a magical incantation he sa
 
 The problem is that the West Tower apparently can't read our messages. You will have to figure out how to reverse whatever Cypher is doing to the messages. Please complete his scheme, so our enemies cannot gain the information that these messages hold!"
 hint = "This is a placeholder."
-victory_description = "This is a placeholder. You've successfully delivered the message."
-fail_description = "This is a placeholder. Your enemies caught your full message before you could deliver it successfully."
+victory_description = "Good work! It looks like our scheme is working perfectly... at least, for now.
+
+Click OK to proceed to the next level!"
+fail_description = "Uh oh! The enemy has intercepted too many of our messages... 
+
+Try again, but make sure your decryption outpost is closer to the West Tower."
 starting_castle = NodePath("Castle A")
 ending_castle = NodePath("Castle B")
 enemies = [NodePath("Enemies/Enemy"), NodePath("Enemies/Enemy2"), NodePath("Enemies/Enemy3")]
